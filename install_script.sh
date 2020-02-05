@@ -49,8 +49,8 @@ function sys_clean(){
 	sed -i '/iptables -A INPUT -p icmp -j ACCEPT/d' /etc/rc.d/rc.local
 	sed -i '/iptables -A INPUT -p tcp --dport 22 -j ACCEPT/d' /etc/rc.d/rc.local
 	sed -i '/iptables -I INPUT -p tcp --dport 80 -j ACCEPT/d' /etc/rc.d/rc.local
-	sed -i '/iptables -A INPUT -p tcp --dport 4433 -j ACCEPT/d' /etc/rc.d/rc.local
-	sed -i '/iptables -A INPUT -p udp --dport 4433 -j ACCEPT/d' /etc/rc.d/rc.local
+	sed -i '/iptables -A INPUT -p tcp --dport 10446 -j ACCEPT/d' /etc/rc.d/rc.local
+	sed -i '/iptables -A INPUT -p udp --dport 10446 -j ACCEPT/d' /etc/rc.d/rc.local
 	sed -i '/iptables -A INPUT -j DROP/d' /etc/rc.d/rc.local
 	sed -i '/iptables -t nat -F/d' /etc/rc.d/rc.local
 	sed -i '/iptables -t nat -A POSTROUTING -s 10.12.0.0\/24 -o eth0 -j MASQUERADE/d' /etc/rc.d/rc.local
@@ -98,8 +98,8 @@ cp ca-cert.pem /etc/ocserv/
 #生成本地服务器证书
 certtool --generate-privkey --outfile server-key.pem
 cat >server.tmpl <<EOF
-cn = "Annyconnect CA"
-organization = "Anyconnect"
+cn = "HDTCN CA"
+organization = "HDTCN"
 serial = 2
 expiration_days = 3650
 encryption_key
@@ -151,8 +151,8 @@ iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A INPUT -p icmp -j ACCEPT
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 iptables -I INPUT -p tcp --dport 80 -j ACCEPT
-iptables -A INPUT -p tcp --dport 4433 -j ACCEPT
-iptables -A INPUT -p udp --dport 4433 -j ACCEPT
+iptables -A INPUT -p tcp --dport 10446 -j ACCEPT
+iptables -A INPUT -p udp --dport 10446 -j ACCEPT
 iptables -A INPUT -j DROP
 iptables -t nat -F
 iptables -t nat -A POSTROUTING -s 10.12.0.0/24 -o eth0 -j MASQUERADE
